@@ -5,7 +5,7 @@ import yes from "puppeteer-extra-plugin-stealth";
 let delay = (ms) => new Promise((r) => setTimeout(r, ms));
 puppeteer.default.use(yes());
 async function browser() {
-    await delay(randomInt(30000, 300000));
+    await delay(randomInt(1, 5));
     const browser = await puppeteer.default.launch({
         headless: false,
         args: ["--no-sandbox"],
@@ -58,6 +58,25 @@ async function browser() {
         await elements[elements.length - 1].click();
     }
     console.log(await page.url());
+    await delay(10000);
+    try {
+        await (await page.$(`#channel-player-gate > div > div > div.Layout-sc-1xcs6mc-0.hczUTW > div > button`)).click();
+    }
+    catch (err) { }
+    await delay(15000);
+    try {
+        await (await page.$(`#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div > main > div.root-scrollable.scrollable-area.scrollable-area--suppress-scroll-x > div.simplebar-scroll-content > div > div > div.InjectLayout-sc-1i43xsx-0.persistent-player`)).click();
+    }
+    catch (err) {
+        console.log("3");
+    }
+    setInterval(async () => {
+        console.log(":3");
+        try {
+            await (await page.$(`#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div > main > div.root-scrollable.scrollable-area.scrollable-area--suppress-scroll-x > div.simplebar-scroll-content > div > div > div.InjectLayout-sc-1i43xsx-0.persistent-player`)).click();
+        }
+        catch (err) { }
+    }, 120000);
     await delay(randomInt(100000, 300000));
     console.log(":3");
     await delay(randomInt(100000, 300000));
@@ -67,8 +86,5 @@ async function browser() {
     if (innertest == "Follow") {
         await nz.click();
     }
-    setInterval(() => {
-        console.log(":3");
-    }, 120000);
 }
 browser();
