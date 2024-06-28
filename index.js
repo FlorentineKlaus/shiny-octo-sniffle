@@ -24,7 +24,6 @@ async function browser() {
     });
     ws.on("message", async function incoming(data) {
         const json = await JSON.parse(data);
-        console.log(json);
         if (json.action == "connection") {
             console.log(":3");
             const user = json.channel;
