@@ -88,7 +88,8 @@ async function browser() {
                 const innertest = await page.evaluate((el) => el.ariaLabel, nz);
                 console.log(innertest)
                 if (innertest == "Follow") {
-                    await nz.click();
+                    console.log("happnd?")
+                    await (await page.$(`#live-channel-stream-information > div > div > div.Layout-sc-1xcs6mc-0.dRGOOY > div > div.Layout-sc-1xcs6mc-0.evfzyg > div.Layout-sc-1xcs6mc-0.denZNh.metadata-layout__support > div.Layout-sc-1xcs6mc-0.ccVkYh > div > div.Layout-sc-1xcs6mc-0.cwtKyw > div > div > div > div.Layout-sc-1xcs6mc-0.bzcGMK > div > div > div > div > button`)).click()
                 }
             }
             catch (err) { console.log("errur :c")}
