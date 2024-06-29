@@ -139,11 +139,11 @@ async function browser() {
                 }
                 catch (err) { }
             }, 120000);
-            await delay(randomInt(100000, 300000));
+            // await delay(randomInt(100000, 300000));
             console.log(":3");
-            await delay(randomInt(100000, 300000));
+            // await delay(randomInt(100000, 300000));
             const nz = await page.$("#live-channel-stream-information > div > div > div.Layout-sc-1xcs6mc-0.dRGOOY > div > div.Layout-sc-1xcs6mc-0.evfzyg > div.Layout-sc-1xcs6mc-0.denZNh.metadata-layout__support > div.Layout-sc-1xcs6mc-0.ccVkYh > div > div.Layout-sc-1xcs6mc-0.cwtKyw > div > div:nth-child(2) > div > div.Layout-sc-1xcs6mc-0.bzcGMK > div > div > div > div > button");
-            console.log(":3");
+            console.log(":3 follow");
             try {
                 const innertest = await page.evaluate((el) => el.ariaLabel, nz);
                 if (innertest == "Follow") {
