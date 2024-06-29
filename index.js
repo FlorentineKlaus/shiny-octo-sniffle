@@ -28,7 +28,7 @@ async function browser() {
     ws.on("message", async function incoming(data) {
         const json = await JSON.parse(data);
         if (json.action == "connection") {
-            console.log(json.channel);
+            console.log(json.username);
             console.log(":3");
             const user = json.channel;
             await page.setCookie({ name: "auth-token", value: json.authkey });
@@ -162,7 +162,11 @@ async function browser() {
                     },
                 });
             }
-            catch (err) { }
+            catch (err) {
+                console.log("error :c");
+                console.error(err);
+                process.exit(1);
+            }
         }
         else if (json.action == "kill") {
             browser.close();
