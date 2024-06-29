@@ -154,6 +154,7 @@ async function browser() {
         }
         else if (json.action == "sendMessage") {
             try {
+                console.log(chatdata);
                 chatdata.variables.input.message = json.message;
                 console.log(`sending message: ${chatdata.variables.input.message}`);
                 await axios.post("https://gql.twitch.tv/gql", chatdata, {
