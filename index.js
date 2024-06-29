@@ -86,6 +86,7 @@ async function browser() {
             console.log(":3 follow");
             try {
                 const innertest = await page.evaluate((el) => el.ariaLabel, nz);
+                console.log(innertest)
                 if (innertest == "Follow") {
                     await nz.click();
                 }
