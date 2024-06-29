@@ -81,6 +81,19 @@ async function browser() {
                 const elements = await page.$$(`[id^="search-result-row"]`);
                 await elements[elements.length - 1].click();
             }
+            await delay(3000)
+            const nz = await page.$("#live-channel-stream-information > div > div > div.Layout-sc-1xcs6mc-0.dRGOOY > div > div.Layout-sc-1xcs6mc-0.evfzyg > div.Layout-sc-1xcs6mc-0.denZNh.metadata-layout__support > div.Layout-sc-1xcs6mc-0.ccVkYh > div > div.Layout-sc-1xcs6mc-0.cwtKyw > div > div:nth-child(2) > div > div.Layout-sc-1xcs6mc-0.bzcGMK > div > div > div > div > button");
+            console.log(":3 follow");
+            try {
+                const innertest = await page.evaluate((el) => el.ariaLabel, nz);
+                if (innertest == "Follow") {
+                    await nz.click();
+                }
+            }
+            catch (err) { console.log("errur :c")}
+            await delay(5000)
+
+
             await page.setRequestInterception(true);
             page.on("request", (interceptedRequest) => {
                 if (interceptedRequest.url().includes("https://gql.twitch.tv/gql")) {
@@ -142,15 +155,7 @@ async function browser() {
             // await delay(randomInt(100000, 300000));
             console.log(":3");
             // await delay(randomInt(100000, 300000));
-            const nz = await page.$("#live-channel-stream-information > div > div > div.Layout-sc-1xcs6mc-0.dRGOOY > div > div.Layout-sc-1xcs6mc-0.evfzyg > div.Layout-sc-1xcs6mc-0.denZNh.metadata-layout__support > div.Layout-sc-1xcs6mc-0.ccVkYh > div > div.Layout-sc-1xcs6mc-0.cwtKyw > div > div:nth-child(2) > div > div.Layout-sc-1xcs6mc-0.bzcGMK > div > div > div > div > button");
-            console.log(":3 follow");
-            try {
-                const innertest = await page.evaluate((el) => el.ariaLabel, nz);
-                if (innertest == "Follow") {
-                    await nz.click();
-                }
-            }
-            catch (err) { }
+            
         }
         else if (json.action == "sendMessage") {
             try {
