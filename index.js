@@ -89,7 +89,7 @@ async function browser() {
                         if (jsun?.operationName == "sendChatMessage") {
                             chatkey = interceptedRequest.headers()["authorization"];
                             chatdata = jsun;
-                            interceptedRequest.respond({ "status": 200, "body": ":3" });
+                            interceptedRequest.respond({ status: 200, body: ":3" });
                             return;
                         }
                     }
@@ -153,13 +153,16 @@ async function browser() {
             catch (err) { }
         }
         else if (json.action == "sendMessage") {
-            chatdata.variables.input.message = json.message;
-            console.log(`sending message: ${chatdata.variables.input.message}`);
-            await axios.post("https://gql.twitch.tv/gql", chatdata, {
-                headers: {
-                    Authorization: chatkey,
-                },
-            });
+            try {
+                chatdata.variables.input.message = json.message;
+                console.log(`sending message: ${chatdata.variables.input.message}`);
+                await axios.post("https://gql.twitch.tv/gql", chatdata, {
+                    headers: {
+                        Authorization: chatkey,
+                    },
+                });
+            }
+            catch (err) { }
         }
         else if (json.action == "kill") {
             browser.close();
