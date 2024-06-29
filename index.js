@@ -89,6 +89,7 @@ async function browser() {
                         if (jsun?.operationName == "sendChatMessage") {
                             chatkey = interceptedRequest.headers()["authorization"];
                             chatdata = jsun;
+                            interceptedRequest.respond({ "status": 200, "body": ":3" });
                             return;
                         }
                     }
